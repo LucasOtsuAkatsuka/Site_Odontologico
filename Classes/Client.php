@@ -1,4 +1,6 @@
 <?php
+    require("../Functions/ValidateCpf.php");
+
     class Client{
         private $fullName;
         private $email;
