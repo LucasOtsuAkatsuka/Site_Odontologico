@@ -21,9 +21,9 @@
         public function getAddress(){return $this->fullAddress;}
         public function getCPF(){return $this->CPF;}
 
-        public function setSalary($fullName){$this->salary = $salary;}
-        public function setAddress($email){$this->fullAddress = $fullAddress;}
-        public function setCPF($phoneNumber){$this->CPF = $CPF;}
+        public function setSalary($salary){$this->salary = $salary;}
+        public function setAddress($fullAddress){$this->fullAddress = $fullAddress;}
+        public function setCPF($CPF){$this->CPF = $CPF;}
       
     } 
 ?>

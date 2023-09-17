@@ -1,7 +1,7 @@
 <?php
     require("../Functions/ValidateCpf.php");
 
-    class Partner {
+    class PartnerDentist {
         private $fullName;
         private $email;
         private $phoneNumber;
@@ -13,6 +13,7 @@
             $this->fullName = $fullName;
             $this->email = $email;
             $this->phoneNumber = $phoneNumber;
+            validateCPF($CPF);
             $this->CPF = $CPF;
             $this->fullAddress = $fullAddress;
             $this->comission = $comission;            
