@@ -7,7 +7,7 @@
         private $phoneNumber;
 
 
-        public function __construct($fullName, $email, $phoneNumber, $RG, $CPF){
+        public function __construct($fullName, $email, $phoneNumber){
             $this->fullName = $fullName;
             $this->email = $email;
             $this->phoneNumber = $phoneNumber;
