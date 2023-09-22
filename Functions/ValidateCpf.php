@@ -7,12 +7,12 @@
         
         // Verifica se foi informado todos os digitos corretamente
         if(strlen($cpf) != 11){
-            return false;
+            throw new InvalidParamsError("Cpf inválido");
         }
 
         // Verifica se foi informada uma sequência de digitos repetidos. Ex: 111.111.111-11
         if(preg_match('/(\d)\1{10}/', $cpf)){
-            return false;
+            throw new InvalidParamsError("Cpf inválido");
         }
 
         // Faz o calculo para validar o CPF
