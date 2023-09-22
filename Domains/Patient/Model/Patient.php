@@ -1,5 +1,5 @@
 <?php
-    class Pacient{
+    class Patient{
         private $fullName;
         private $email;
         private $phoneNumber;

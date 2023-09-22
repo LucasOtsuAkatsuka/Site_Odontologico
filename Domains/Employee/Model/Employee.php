@@ -1,6 +1,6 @@
 <?php
-    require("../Functions/ValidateCpf.php");
-    require_once('User.php');
+    require(__DIR__."../../../../Functions/ValidateCpf.php");
+    require_once(__DIR__."../../../User/Model/User.php");
 
     class Employee extends User
     {

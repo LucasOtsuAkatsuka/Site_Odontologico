@@ -1,7 +1,6 @@
 <?php
 
-require("../Functions/ValidateCpf.php");
-require_once('Employee.php');
+require_once(__DIR__."../../../Employee/Model/Employee.php");
 
 class Auxiliary extends Employee
 {

@@ -1,5 +1,5 @@
 <?php
-    require("../Functions/ValidateCpf.php");
+    require(__DIR__."../../../../Functions/ValidateCpf.php");
 
     class Client{
         private $fullName;

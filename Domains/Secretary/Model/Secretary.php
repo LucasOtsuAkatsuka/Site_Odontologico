@@ -1,16 +1,12 @@
 <?php
 
-require("../Functions/ValidateCpf.php");
-require_once('Employee.php');
+require_once(__DIR__ . "../../../Employee/Model/Employee.php");
 
-class Secretary extends Employee
-{
-
-    public function __construct($fullName, $email, $phoneNumber, $salary, $fullAddress, $CPF)
-    {
+class Secretary extends Employee{
+    public function __construct($fullName, $email, $phoneNumber, $salary, $fullAddress, $CPF){
         parent::__construct($fullName, $email, $phoneNumber, $salary, $fullAddress, $CPF);
     }
-
 }
+
 
 ?>
