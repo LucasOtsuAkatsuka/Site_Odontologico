@@ -1,7 +1,6 @@
 <?php
-    require(__DIR__."../../../../Functions/ValidateCpf.php");
     require_once(__DIR__."../../../Dentist/Model/Dentist.php");
-    require_once(__DIR__."../../../Employee/Model/Employee.php");
+
     class PartnerDentist extends Dentist {
         private $comission;
 

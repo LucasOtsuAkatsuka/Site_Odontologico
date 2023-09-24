@@ -1,5 +1,4 @@
 <?php
-    require_once(__DIR__."../../../Employee/Model/Employee.php");
     require_once(__DIR__."../../../Dentist/Model/Dentist.php");
 
     class FixedDentist extends Dentist {
