@@ -1,7 +1,8 @@
 <?php
     require_once(__DIR__."../../../Employee/Model/Employee.php");
+    require_once(__DIR__."../../../Dentist/Model/Dentist.php");
 
-    class Dentist extends Employee {
+    class FixedDentist extends Dentist {
         private $CRO;
         private $specialization;
 
