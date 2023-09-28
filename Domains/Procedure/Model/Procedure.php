@@ -17,7 +17,5 @@
         public function setType($type){$this->type = $type;}
         public function setDescription($description){$this->description = $description;}
         public function setValue($value){$this->value = $value;}
-      
     }
-
 ?>
