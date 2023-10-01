@@ -1,10 +1,13 @@
 <?php
   require(__DIR__."../../../../Database/persist.php");
+  require_once(__DIR__."../../../Appointment/Model/Appointment.php");
+  require_once(__DIR__."../../../Errors/InvalidParamsError.php");
 
     class Procedure extends persist{
         private $type;
         private $description;
         private $value;
+        private $appointments = array();
 
         protected static $local_filename = "Procedure.txt";
 
@@ -25,5 +28,13 @@
         public function setType($type){$this->type = $type;}
         public function setDescription($description){$this->description = $description;}
         public function setValue($value){$this->value = $value;}
-    }
+        
+        public function addAppointments($appointment){
+          if($appointment instanceof Appointment){
+            $this->appointments[] = $appointment; 
+          } else {
+            throw new InvalidParamsError("Invalid appointment");
+          }
+        }
+      }
 ?>
