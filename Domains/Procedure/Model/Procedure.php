@@ -7,7 +7,7 @@
         private $type;
         private $description;
         private $value;
-        private $appointments = array();
+        private Appointment $appointments = array();
 
         protected static $local_filename = "Procedure.txt";
 
@@ -19,7 +19,7 @@
 
         static public function getFilename(){
           return get_called_class()::$local_filename;
-      }
+        }
       
         public function getType(){return $this->type;}
         public function getDescription(){return $this->description;}
@@ -36,5 +36,5 @@
             throw new InvalidParamsError("Invalid appointment");
           }
         }
-      }
+    }
 ?>
