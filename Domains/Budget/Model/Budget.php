@@ -12,15 +12,17 @@
 
         private $isApproved = false;
         private $paymentType = null;
+        private $detailedDescription;
 
         protected static $local_filename = "Budget.txt";
 
-        public function __construct($patient, $responsibleDentist, $procedures, $budgetDate){
+        public function __construct($patient, $responsibleDentist, $procedures, $budgetDate, $detailedDescription){
             $this->patient = $patient;
             $this->responsibleDentist = $responsibleDentist;
             $this->procedures = $procedures;
 
             $this->budgetDate = $budgetDate;
+            $this->detailedDescription = $detailedDescription;
 
             foreach($procedures as $procedure){
                 $this->totalValue += $procedure->getValue();
@@ -43,6 +45,8 @@
         public function getTotalValue(){return $this->totalValue;}
         public function getPaymentType(){return $this->paymentType;}
         public function getApproved(){return $this->isApproved;}
+        public function getDetailedDescription(){return $this->detailedDescription;}
+
 
         public function setPatient($patient){$this->patient = $patient;}
         public function setResponsibleDentist($responsibleDentist){$this->responsibleDentist = $responsibleDentist;}
@@ -55,5 +59,6 @@
             else
                 throw new PermissionError("Orçamento não foi aprovado pelo paciente");
         }
+        public function setDetailedDescription($detailedDescription){$this->detailedDescription = $detailedDescription;}
     }
 ?>
