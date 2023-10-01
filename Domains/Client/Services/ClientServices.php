@@ -4,9 +4,13 @@
     class ClientServices{
         function createClient($fullName, $email, $phoneNumber, $RG, $CPF)
         {
-            $client = new Client($fullName, $email, $phoneNumber, $RG, $CPF);
-
-            return $client;
+            try{
+                $client = new Client($fullName, $email, $phoneNumber, $RG, $CPF);
+                $client->save();
+                echo "client criado com sucesso";
+            }catch(Exception $e){
+                throw new Exception($e->getMessage());
+            }
         }
 
         function updateClient(Client $client, $fullName, $email, $phoneNumber){

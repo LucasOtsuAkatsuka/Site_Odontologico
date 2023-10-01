@@ -1,5 +1,7 @@
 <?php
-    class Patient{
+    require_once(__DIR__."../../../../Database/persist.php");
+
+    class Patient extends persist{
         private $fullName;
         private $email;
         private $phoneNumber;
@@ -7,6 +9,7 @@
         private $birthDate;
 
         private $client;
+        protected static $local_filename = "Patient.txt";
 
         public function __construct($fullName, $email, $phoneNumber, $RG, $birthDate, $client){
             $this->fullName = $fullName;
@@ -15,6 +18,10 @@
             $this->RG = $RG;
             $this->birthDate = $birthDate;
             $this->client = $client;
+        }
+
+        static public function getFilename(){
+            return get_called_class()::$local_filename;
         }
 
         public function getFullName(){return $this->fullName;}

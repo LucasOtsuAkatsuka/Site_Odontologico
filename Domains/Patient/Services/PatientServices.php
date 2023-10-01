@@ -3,9 +3,12 @@
 
     class PatientServices{
         function createPatient($fullName, $email, $phoneNumber, $RG, $birthDate, $client){
-            $patient = new Patient($fullName, $email, $phoneNumber, $RG, $birthDate, $client);
-
-            return $patient;
+            try{
+                $patient = new Patient($fullName, $email, $phoneNumber, $RG, $birthDate, $client);
+                $patient->save();
+            }catch(Exception $e){
+                throw new Exception($e->getMessage());
+            }
         }
 
         function updatePatient(Patient $patient, $fullName, $email, $phoneNumber, $client){

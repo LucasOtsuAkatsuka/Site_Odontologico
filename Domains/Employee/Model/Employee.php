@@ -2,8 +2,7 @@
     require(__DIR__."../../../../Functions/ValidateCpf.php");
     require_once(__DIR__."../../../User/Model/User.php");
 
-    class Employee extends User
-    {
+    class Employee extends User{
         private $salary;
         private $fullAddress;
         private $CPF;

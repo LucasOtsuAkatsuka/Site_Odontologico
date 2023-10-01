@@ -1,7 +1,8 @@
 <?php
     require(__DIR__."../../../../Errors/PermissionError.php");
+    require_once(__DIR__."../../../../Database/persist.php");
 
-    class Budget{
+    class Budget extends persist{
         private $patient;
         private $responsibleDentist;
         private $procedures = array();
@@ -11,6 +12,8 @@
 
         private $isApproved = false;
         private $paymentType = null;
+
+        protected static $local_filename = "Budget.txt";
 
         public function __construct($patient, $responsibleDentist, $procedures, $budgetDate){
             $this->patient = $patient;
@@ -27,6 +30,10 @@
         public function approveBudget($paymentType){
             $this->isApproved = true;
             $this->paymentType = $paymentType;
+        }
+
+        static public function getFilename(){
+            return get_called_class()::$local_filename;
         }
 
         public function getPatient(){return $this->patient;}
