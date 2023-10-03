@@ -48,9 +48,9 @@
             $this->objects[$p_index-1] = $p_obj;
         }
 
-        // Deletes an object from objects array
-        public function deleteObject( $p_index ) {
-            // TO DO
+        public function removeObject($p_obj){
+            $index = array_search($p_obj, $this->objects);
+            unset($this->objects[$index]);
         }
 
         public function getObjects () {
@@ -73,10 +73,18 @@
         }
 
         public function persist() { 
-            for ( $i = 0; $i < count($this->objects); $i++ )
-                $this->objects[$i]->setIndex($i+1);            
+            $objects = array_filter($this->objects, function ($obj) {
+                return $obj !== null;
+            });
+        
+            foreach ($objects as $index => $object) {
+                $object->setIndex($index + 1);
+            }
+        
+            $this->objects = array_values($objects);
+        
             $serialized = serialize($this);
-            file_put_contents( $this->filename, $serialized );   
+            file_put_contents($this->filename, $serialized);
         }
 
         /* get's e set's aqui */

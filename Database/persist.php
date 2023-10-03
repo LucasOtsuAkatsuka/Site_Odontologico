@@ -48,6 +48,12 @@
             $container->persist();
         }
 
+        public function delete(){
+            $container = new container(get_called_class()::getFilename());
+            $container->removeObject($this);
+            $container->persist();
+        }
+
         static public function getRecordsByField( $p_field, $p_value ) {            
             $container = new container(get_called_class()::getFilename());
             //$container = container::getInstance(get_called_class()::getFilename());          

@@ -1,17 +1,18 @@
 <?php
+    require(__DIR__."../../../Client/Model/Client.php");
     require_once(__DIR__."../../../../Database/persist.php");
 
     class Patient extends persist{
         private $fullName;
         private $email;
         private $phoneNumber;
-        private $RG;
+        protected $RG;
         private $birthDate;
 
-        private $client;
+        private  $client;
         protected static $local_filename = "Patient.txt";
 
-        public function __construct($fullName, $email, $phoneNumber, $RG, $birthDate, $client){
+        public function __construct($fullName, $email, $phoneNumber, $RG, $birthDate,  $client){
             $this->fullName = $fullName;
             $this->email = $email;
             $this->phoneNumber = $phoneNumber;
