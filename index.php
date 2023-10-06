@@ -33,8 +33,8 @@ try{
     $fixedDentist1 = $FixedDentistServices->getFixedDentist("130.924.876-13");
 
     //$AppointmentServices->createAppointment($patient1, $fixedDentist1, "dia 12", "10 horas", "20 min");
-    //$appointments = $AppointmentServices->getAll();
-    //print_r($appointments);
+    $appointments = $AppointmentServices->getAll();
+    print_r($appointments);
 }catch(Exception $e){
     throw new Exception($e->getMessage());
 }

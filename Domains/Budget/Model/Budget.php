@@ -1,11 +1,14 @@
 <?php
-    require(__DIR__."../../../../Errors/PermissionError.php");
+    require_once(__DIR__."../../../../Errors/PermissionError.php");
     require_once(__DIR__."../../../../Database/persist.php");
+    require_once(__DIR__."../../../Patient/Model/Patient.php");
+    require_once(__DIR__."../../../Dentist/Model/Dentist.php");
+    require_once(__DIR__."../../../Procedure/Model/Procedure.php");
 
     class Budget extends persist{
-        private $patient;
-        private $responsibleDentist;
-        private $procedures = array();
+        private Patient $patient;
+        private Dentist $responsibleDentist;
+        private Procedure $procedures = array();
 
         private $budgetDate;
         private $totalValue;
@@ -16,7 +19,7 @@
 
         protected static $local_filename = "Budget.txt";
 
-        public function __construct($patient, $responsibleDentist, $procedures, $budgetDate, $detailedDescription){
+        public function __construct(Patient $patient, Dentist $responsibleDentist, Procedure $procedures, $budgetDate, $detailedDescription){
             $this->patient = $patient;
             $this->responsibleDentist = $responsibleDentist;
             $this->procedures = $procedures;

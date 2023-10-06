@@ -1,19 +1,41 @@
 <?php
-    require(__DIR__."../../../Secretary/Model/Secretary.php");
+    require_once(__DIR__."../../../Secretary/Model/Secretary.php");
+    require_once(__DIR__."../../../../Errors/NotFoundError.php");
 
     class SecretaryServices{
         function createSecretary($fullName, $email, $phoneNumber, $salary, $fullAddress, $CPF){
-            $secretary = new Secretary($fullName, $email, $phoneNumber, $salary, $fullAddress, $CPF);
-
-            return $secretary;
+            try{
+                $secretary = new Secretary($fullName, $email, $phoneNumber, $salary, $fullAddress, $CPF);
+                $secretary->save();
+            }catch(Exception $e){
+                throw new Exception($e->getMessage());
+            }
         }
 
-        function updateSecretary(Patient $patient, $fullName, $email, $phoneNumber, $client){
-            
+        function deleteSecretary($CPF){
+            try{
+                $secretary = $this->getSecretary($CPF);
+
+                $secretary->delete();
+            }catch (Exception $e){
+                throw new Exception($e->getMessage());
+            }
+        }
+        
+        function getSecretary($CPF){
+            $secretary = Secretary::getRecordsByField("CPF", $CPF);
+            if(!$secretary)
+                throw new NotFoundError("Secretária não encontrada");
+
+            return $secretary[0];
         }
 
-        function deleteSecretary(){ //Implementar quando o banco de dados for criado
+        function getAll(){
+            $secretaries = Secretary::getRecords();
+            if(!$secretaries)
+                throw new NotFoundError("Nenhuma secretária encontrada");
 
+            return $secretaries;
         }
     }
 
