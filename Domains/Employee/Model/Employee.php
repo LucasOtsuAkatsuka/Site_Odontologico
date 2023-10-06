@@ -1,11 +1,11 @@
 <?php
-    require(__DIR__."../../../../Functions/ValidateCpf.php");
+    require_once(__DIR__."../../../../Functions/ValidateCpf.php");
     require_once(__DIR__."../../../User/Model/User.php");
 
     class Employee extends User{
         private $salary;
         private $fullAddress;
-        private $CPF;
+        protected $CPF;
 
         public function __construct($fullName, $email, $phoneNumber, $salary ,$fullAddress ,$CPF) 
       {

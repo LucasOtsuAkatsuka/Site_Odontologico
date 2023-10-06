@@ -1,5 +1,5 @@
 <?php
-    require(__DIR__."../../../../Functions/ValidateCpf.php");
+    require_once(__DIR__."../../../../Functions/ValidateCpf.php");
     require_once(__DIR__."../../../../Database/persist.php");
 
     class Client extends persist{
@@ -7,7 +7,7 @@
         private $email;
         private $phoneNumber;
         private $RG;
-        private $CPF;
+        protected $CPF;
 
         protected static $local_filename = "Client.txt";
 

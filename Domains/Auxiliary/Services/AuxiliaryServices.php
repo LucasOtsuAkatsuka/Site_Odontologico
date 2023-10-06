@@ -1,17 +1,41 @@
 <?php   
+    require_once(__DIR__."../../Model/Auxiliary.php");
+    require_once(__DIR__."../../../../Errors/NotFoundError.php");
+
     class AuxiliaryServices{
         function createAuxiliary($fullName, $email, $phoneNumber, $salary, $fullAddress, $CPF){
-            $auxiliary = new Auxiliary($fullName, $email, $phoneNumber, $salary, $fullAddress, $CPF);
-
-            return $auxiliary;
+            try{
+                $auxiliary = new Auxiliary($fullName, $email, $phoneNumber, $salary, $fullAddress, $CPF);
+                $auxiliary->save();
+            }catch(Exception $e){
+                throw new Exception($e->getMessage());
+            }
         }
 
-        function updateAuxiliary(){
+        function deleteAuxiliary($CPF){
+            try{
+                $auxiliary = $this->getAuxiliary($CPF);
 
+                $auxiliary->delete();
+            }catch (Exception $e){
+                throw new Exception($e->getMessage());
+            }
+        }
+        
+        function getAuxiliary($CPF){
+            $auxiliary = Auxiliary::getRecordsByField("CPF", $CPF);
+            if(!$auxiliary)
+                throw new NotFoundError("Auxiliar não encontrado");
+
+            return $auxiliary[0];
         }
 
-        function deleteAuxiliary(){
-            
+        function getAll(){
+            $auxiliaries = Auxiliary::getRecords();
+            if(!$auxiliaries)
+                throw new NotFoundError("Nenhum auxiliar encontrado");
+
+            return $auxiliaries;
         }
     }
 

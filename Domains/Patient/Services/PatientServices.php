@@ -1,6 +1,6 @@
 <?php
-    require(__DIR__ . '/../Model/Patient.php');
-    require(__DIR__."../../../../Errors/NotFoundError.php");
+    require_once(__DIR__ . '/../Model/Patient.php');
+    require_once(__DIR__."../../../../Errors/NotFoundError.php");
 
     class PatientServices{
         function createPatient($fullName, $email, $phoneNumber, $RG, $birthDate,  $client){
@@ -16,13 +16,13 @@
             
         }
 
-        function deletePatient($RG){ //Implementar quando o banco de dados for criado
+        function deletePatient($RG){
             try{
                 $patient = $this->getPatient($RG);
 
                 $patient->delete();
             }catch (Exception $e){
-                throw new NotFoundError($e->getMessage());
+                throw new Exception($e->getMessage());
             }
         }
         
@@ -32,6 +32,14 @@
                 throw new NotFoundError("Paciente não encontrado");
 
             return $patient[0];
+        }
+
+        function getAll(){
+            $patients = Patient::getRecords();
+            if(!$patients)
+                throw new NotFoundError("Nenhum paciente encontrado");
+
+            return $patients;
         }
     }
 
