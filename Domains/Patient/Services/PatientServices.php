@@ -1,10 +1,13 @@
 <?php
     require_once(__DIR__ . '/../Model/Patient.php');
     require_once(__DIR__."../../../../Errors/NotFoundError.php");
+    require_once(__DIR__."../../../../Functions/checkRG.php");
 
     class PatientServices{
         function createPatient($fullName, $email, $phoneNumber, $RG, $birthDate,  $client){
             try{
+                checkRG($RG);
+
                 $patient = new Patient($fullName, $email, $phoneNumber, $RG, $birthDate, $client);
                 $patient->save();
             }catch(Exception $e){

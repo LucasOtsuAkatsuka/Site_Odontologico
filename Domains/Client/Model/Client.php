@@ -6,7 +6,7 @@
         private $fullName;
         private $email;
         private $phoneNumber;
-        private $RG;
+        protected $RG;
         protected $CPF;
 
         protected static $local_filename = "Client.txt";

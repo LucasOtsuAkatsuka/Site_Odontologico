@@ -7,9 +7,9 @@
         private $fullAddress;
         protected $CPF;
 
-        public function __construct($fullName, $email, $phoneNumber, $salary ,$fullAddress ,$CPF) 
+        public function __construct($fullName, $email, $password, $phoneNumber, $salary ,$fullAddress ,$CPF) 
       {
-          parent::__construct($fullName, $email, $phoneNumber); // Chama o construtor da classe Pai
+          parent::__construct($fullName, $email, $password, $phoneNumber); // Chama o construtor da classe Pai
           $this->salary = $salary;
           $this->fullAddress = $fullAddress;
           validateCPF($CPF);

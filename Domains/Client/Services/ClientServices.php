@@ -1,10 +1,14 @@
 <?php
     require_once(__DIR__."../../../../Errors/NotFoundError.php");
     require_once(__DIR__ . '/../Model/Client.php');
+    require_once(__DIR__."../../../../Functions/checkCpf.php");
 
     class ClientServices{
         function createClient($fullName, $email, $phoneNumber, $RG, $CPF){
             try{
+                checkCpf($CPF);
+                checkRG($RG);
+
                 $client = new Client($fullName, $email, $phoneNumber, $RG, $CPF);
                 $client->save();
             }catch(Exception $e){

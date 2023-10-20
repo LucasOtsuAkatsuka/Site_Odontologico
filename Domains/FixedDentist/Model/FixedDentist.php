@@ -6,8 +6,8 @@
         private $CRO;
         private Specialization $specialization;
 
-        public function __construct($fullName, $email, $phoneNumber, $CPF, $fullAddress, $salary, $CRO, Specialization $specialization){
-            parent::__construct($fullName, $email, $phoneNumber, $salary, $fullAddress, $CPF);
+        public function __construct($fullName, $email, $password, $phoneNumber, $CPF, $fullAddress, $salary, $CRO, Specialization $specialization){
+            parent::__construct($fullName, $email, $password, $phoneNumber, $salary, $fullAddress, $CPF);
             $this->CRO = $CRO;
             $this->specialization = $specialization;
         }

@@ -1,11 +1,14 @@
 <?php
     require_once(__DIR__."../../../Secretary/Model/Secretary.php");
     require_once(__DIR__."../../../../Errors/NotFoundError.php");
+    require_once(__DIR__."../../../../Functions/checkCpf.php");
 
     class SecretaryServices{
-        function createSecretary($fullName, $email, $phoneNumber, $salary, $fullAddress, $CPF){
+        function createSecretary($fullName, $email, $password, $phoneNumber, $salary, $fullAddress, $CPF){
             try{
-                $secretary = new Secretary($fullName, $email, $phoneNumber, $salary, $fullAddress, $CPF);
+                checkCpf($CPF);
+
+                $secretary = new Secretary($fullName, $email, $password, $phoneNumber, $salary, $fullAddress, $CPF);
                 $secretary->save();
             }catch(Exception $e){
                 throw new Exception($e->getMessage());
