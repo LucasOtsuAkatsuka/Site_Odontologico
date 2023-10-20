@@ -2,10 +2,12 @@
     require_once(__DIR__."../../Model/Auxiliary.php");
     require_once(__DIR__."../../../../Errors/NotFoundError.php");
     require_once(__DIR__."../../../../Functions/checkCpf.php");
+    require_once(__DIR__."../../../../Functions/checkEmail.php");
 
     class AuxiliaryServices{
         function createAuxiliary($fullName, $email, $password, $phoneNumber, $salary, $fullAddress, $CPF){
             try{
+                checkEmail($email);
                 checkCpf($CPF);
 
                 $auxiliary = new Auxiliary($fullName, $email, $password, $phoneNumber, $salary, $fullAddress, $CPF);

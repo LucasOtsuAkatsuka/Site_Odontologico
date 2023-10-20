@@ -3,8 +3,8 @@
 
     class User extends persist{
         private $fullName;
-        private $email;
-        private $password;
+        protected $email;
+        protected $password;
         private $phoneNumber;
 
         protected static $local_filename = "User.txt";

@@ -1,10 +1,12 @@
 <?php
     require_once(__DIR__ . '/../Model/FixedDentist.php');
     require_once(__DIR__."../../../../Functions/checkCpf.php");
+    require_once(__DIR__."../../../../Functions/checkEmail.php");
 
     class FixedDentistServices{
         function createFixedDentist($fullName, $email, $password, $phoneNumber, $CPF, $fullAddress, $salary, $CRO, Specialization $specialization){
             try{
+                checkEmail($email);
                 checkCpf($CPF);
 
                 $fixedDentist = new FixedDentist($fullName, $email, $password, $phoneNumber, $CPF, $fullAddress, $salary, $CRO, $specialization);
