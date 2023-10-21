@@ -3,8 +3,8 @@
 
 
     class Dentist extends Employee{
-        public function __construct($fullName, $email, $password, $phoneNumber, $salary ,$fullAddress ,$CPF){
-            parent::__construct($fullName, $email, $password, $phoneNumber, $salary ,$fullAddress ,$CPF); // Chama o construtor da classe Pai
+        public function __construct($fullName, $email, $password, $phoneNumber, $salary ,$fullAddress ,$CPF, Profile $profile){
+            parent::__construct($fullName, $email, $password, $phoneNumber, $salary ,$fullAddress ,$CPF, $profile); // Chama o construtor da classe Pai
         }
     }
 ?>

@@ -1,7 +1,7 @@
 <?php
-    require_once(__DIR__."../../../User/Model/User.php");
     require_once(__DIR__."../../../../Errors/PermissionError.php");
     require_once(__DIR__."../../../../Functions/verifyCredentials.php");
+    require_once(__DIR__."../../../User/Model/User.php");
 
     class Login{
         protected User $loggedUser;
@@ -33,6 +33,8 @@
         public function getLogged(){
             if($this->isLogged() == true)
                 return $this->loggedUser;
+            else
+                throw new PermissionError("Nenhum usuário logado no sistema");
         }
     };
 ?>

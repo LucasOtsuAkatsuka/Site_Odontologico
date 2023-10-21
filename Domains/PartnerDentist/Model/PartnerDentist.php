@@ -4,8 +4,8 @@
     class PartnerDentist extends Dentist {
         private $comission;
 
-        public function __construct($fullName, $email, $password, $phoneNumber, $CPF, $fullAddress, $salary, $comission) {
-            parent::__construct($fullName, $email, $password, $phoneNumber, $salary, $fullAddress, $CPF);
+        public function __construct($fullName, $email, $password, $phoneNumber, $CPF, $fullAddress, $salary, $comission, Profile $profile) {
+            parent::__construct($fullName, $email, $password, $phoneNumber, $salary, $fullAddress, $CPF, $profile);
             $this->comission = $comission;            
         }
 

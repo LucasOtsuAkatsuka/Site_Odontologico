@@ -5,12 +5,12 @@
     require_once(__DIR__."../../../../Functions/checkEmail.php");
 
     class AuxiliaryServices{
-        function createAuxiliary($fullName, $email, $password, $phoneNumber, $salary, $fullAddress, $CPF){
+        function createAuxiliary($fullName, $email, $password, $phoneNumber, $salary, $fullAddress, $CPF, Profile $profile){
             try{
                 checkEmail($email);
                 checkCpf($CPF);
 
-                $auxiliary = new Auxiliary($fullName, $email, $password, $phoneNumber, $salary, $fullAddress, $CPF);
+                $auxiliary = new Auxiliary($fullName, $email, $password, $phoneNumber, $salary, $fullAddress, $CPF, $profile);
                 $auxiliary->save();
             }catch(Exception $e){
                 throw new Exception($e->getMessage());

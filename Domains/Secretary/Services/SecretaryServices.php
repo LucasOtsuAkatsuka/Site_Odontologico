@@ -5,12 +5,12 @@
     require_once(__DIR__."../../../../Functions/checkEmail.php");
 
     class SecretaryServices{
-        function createSecretary($fullName, $email, $password, $phoneNumber, $salary, $fullAddress, $CPF){
+        function createSecretary($fullName, $email, $password, $phoneNumber, $salary, $fullAddress, $CPF, Profile $profile){
             try{
                 checkEmail($email);
                 checkCpf($CPF);
 
-                $secretary = new Secretary($fullName, $email, $password, $phoneNumber, $salary, $fullAddress, $CPF);
+                $secretary = new Secretary($fullName, $email, $password, $phoneNumber, $salary, $fullAddress, $CPF, $profile);
                 $secretary->save();
             }catch(Exception $e){
                 throw new Exception($e->getMessage());

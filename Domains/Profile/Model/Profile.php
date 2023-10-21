@@ -3,10 +3,10 @@
     require_once(__DIR__."../../../../Database/persist.php");
 
     class Profile extends persist{
-        
-        protected static $local_filename = "Profile.txt";
         private $profileType;
         private $permissions = array();
+        
+        protected static $local_filename = "Profile.txt";
 
         public function __construct($profileType){
             $this->profileType = $profileType;
@@ -21,9 +21,5 @@
         static public function getFilename(){
             return get_called_class()::$local_filename;
         }
-
     }
-
-
-
 ?>
