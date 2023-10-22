@@ -8,6 +8,7 @@
         private $description;
         private $value;
         private Appointment $appointments = array();
+        private Specialization $specialization = array();
 
         protected static $local_filename = "Procedure.txt";
 
@@ -24,6 +25,7 @@
         public function getType(){return $this->type;}
         public function getDescription(){return $this->description;}
         public function getValue(){return $this->value;}
+        public function getSpecialization(){return $this->specialization;}
 
         public function setType($type){$this->type = $type;}
         public function setDescription($description){$this->description = $description;}
@@ -36,5 +38,13 @@
             throw new InvalidParamsError("Invalid appointment");
           }
         }
+
+        public function addSpecialization($specialization){
+          if($specialization instanceof Specialization){
+              $this->specialization[] = $specialization;
+          } else {
+              throw new InvalidParamsError("Invalid specialization");
+          }
+      }
     }
 ?>
