@@ -40,6 +40,20 @@ try{
     //$user = User::getRecordsByField("email", "emailDentista2@gmail.com");
     //print_r($user);
 
+    
+    // public function createQuery($query){         //verificar se o dentista tem as especializações necessárias para a consulta antes de criar
+        //if ( $this->getSpecialization() == $query->getSpecialization() ){
+            //return new Query($this, $query->getPatient(), $query->getSpecialization(), $query->getProcedure(), $query->getDate(), $query->getTime(), $query->getDuration());
+        //}
+        //else{
+            //throw new Exception("Dentista não tem a especialização necessária para a consulta");
+        //}
+    //}
+    
+    
+
+
+
     $login = new Login();
     $login->login("emailDentista1@gmail.com", "senha123");
 
