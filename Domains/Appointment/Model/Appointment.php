@@ -5,18 +5,18 @@
 
     class Appointment extends persist{
         private Patient $patient;
-        private FixedDentist $appointmentDentist;
-        private $appoitmentDate;
-        private $appoitmentTime;
+        private Dentist $appointmentDentist;
+        private $appointmentDate;
+        private $appointmentTime;
         private $expectedDuration;
 
         protected static $local_filename = "Appointment.txt";
 
-        public function __construct(Patient $patient, Dentist $appointmentDentist, $appoitmentDate, $appoitmentTime, $expectedDuration){
+        public function __construct(Patient $patient, Dentist $appointmentDentist, $appointmentDate, $appointmentTime, $expectedDuration){
             $this->patient = $patient;
             $this->appointmentDentist = $appointmentDentist;
-            $this->appoitmentDate = $appoitmentDate;
-            $this->appoitmentTime = $appoitmentTime;
+            $this->appointmentDate = $appointmentDate;
+            $this->appointmentTime = $appointmentTime;
             $this->expectedDuration = $expectedDuration;
         }
 
@@ -25,15 +25,15 @@
         }
 
         public function getPatient():Patient{return $this->patient;}
-        public function getAppointmentDentist():FixedDentist{return $this->appointmentDentist;}
-        public function getAppointmentDate(){return $this->appoitmentDate;}
-        public function getAppointmentTime(){return $this->appoitmentTime;}
+        public function getAppointmentDentist():Dentist{return $this->appointmentDentist;}
+        public function getAppointmentDate(){return $this->appointmentDate;}
+        public function getAppointmentTime(){return $this->appointmentTime;}
         public function getExpectedDuration(){return $this->expectedDuration;}
         
         public function setPatient(Patient $patient){$this->patient = $patient;}
-        public function setAppointmentDentist(FixedDentist $appointmentDentist){$this->appointmentDentist = $appointmentDentist;}
-        public function setAppointmentDate($appoitmentDate){$this->appoitmentDate = $appoitmentDate;}
-        public function setAppointmentTime($appoitmentTime){$this->appoitmentTime = $appoitmentTime;}
+        public function setAppointmentDentist(Dentist $appointmentDentist){$this->appointmentDentist = $appointmentDentist;}
+        public function setAppointmentDate($appoitmentDate){$this->appointmentDate = $appoitmentDate;}
+        public function setAppointmentTime($appoitmentTime){$this->appointmentTime = $appoitmentTime;}
         public function setExpectedDuration($expectedDuration){$this->expectedDuration = $expectedDuration;}
         
     }

@@ -1,6 +1,6 @@
 <?php
     $kewWords = [
-        'registerPacient',
+        'registerPatient',
         'registerDentist',
         'registerAuxiliary',
         'registerSecretary',

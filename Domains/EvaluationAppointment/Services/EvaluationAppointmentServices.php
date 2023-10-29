@@ -1,11 +1,10 @@
 <?php
-    require_once(__DIR__."../../Model/Appointment.php");
-    require_once(__DIR__."../../../../Errors/NotFoundError.php");
+    require_once(__DIR__."../../../Patient/Model/Appointment.php");
 
-    class AppointmentServices{
-        function createAppointment(Patient $patient, Dentist $appointmentDentist, $appointmentDate, $appointmentTime, $expectedDuration){
+    class EvaluationAppointmentServices{
+        function createEvaluationAppointment(Patient $patient, Dentist $appointmentDentist, $appointmentDate, $appointmentTime){
             try{
-                $appointment = new Appointment($patient, $appointmentDentist, $appointmentDate, $appointmentTime, $expectedDuration);
+                $appointment = new Appointment($patient, $appointmentDentist, $appointmentDate, $appointmentTime, 30);
                 $appointment->save();
             }catch(Exception $e){
                 throw new Exception($e->getMessage());
@@ -16,9 +15,9 @@
             
         }
 
-        function deleteAppointment($index){
+        function deleteEvaluationAppointment($index){
             try{
-                $appointment = $this->getAppointment($index);
+                $appointment = $this->getEvaluationAppointment($index);
 
                 $appointment->delete();
             }catch (Exception $e){
@@ -26,10 +25,10 @@
             }
         }
         
-        function getAppointment($index){
+        function getEvaluationAppointment($index){
             $Appointment = Appointment::getRecordsByField("index", $index);
             if(!$Appointment)
-                throw new NotFoundError("Consulta não encontrada");
+                throw new NotFoundError("Consulta de avaliação não encontrada");
 
             return $Appointment[0];
         }
@@ -37,11 +36,14 @@
         function getAll(){
             $appointments = Appointment::getRecords();
             if(!$appointments)
-                throw new NotFoundError("Nenhuma consulta encontrada");
+                throw new NotFoundError("Nenhuma consulta de avaliação encontrada");
 
             return $appointments;
         }
     }
 
-    return new AppointmentServices();
-?>
+
+
+
+
+
