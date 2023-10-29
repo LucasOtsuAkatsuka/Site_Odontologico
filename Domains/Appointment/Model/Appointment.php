@@ -12,7 +12,7 @@
 
         protected static $local_filename = "Appointment.txt";
 
-        public function __construct(Patient $patient, FixedDentist $appointmentDentist, $appoitmentDate, $appoitmentTime, $expectedDuration){
+        public function __construct(Patient $patient, Dentist $appointmentDentist, $appoitmentDate, $appoitmentTime, $expectedDuration){
             $this->patient = $patient;
             $this->appointmentDentist = $appointmentDentist;
             $this->appoitmentDate = $appoitmentDate;

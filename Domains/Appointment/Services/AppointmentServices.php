@@ -3,7 +3,7 @@
     require_once(__DIR__."../../../../Errors/NotFoundError.php");
 
     class AppointmentServices{
-        function createAppointment(Patient $patient, FixedDentist $appointmentDentist, $appoitmentDate, $appoitmentTime, $expectedDuration)
+        function createAppointment(Patient $patient, Dentist $appointmentDentist, $appoitmentDate, $appoitmentTime, $expectedDuration)
         {
             try{
                 $appointment = new Appointment($patient, $appointmentDentist, $appoitmentDate, $appoitmentTime, $expectedDuration);
