@@ -3,9 +3,9 @@
     require_once(__DIR__ . '/../Model/Procedure.php');
 
     class ProcedureServices{
-        function createProcedure($type, $description, $value){
+        function createProcedure($type, $description, $value, Specialization $specialization){
             try{
-                $procedure = new Procedure($type, $description, $value);
+                $procedure = new Procedure($type, $description, $value, $specialization);
                 $procedure->save();
             }catch(Exception $e){
                 echo($e->getMessage().PHP_EOL);

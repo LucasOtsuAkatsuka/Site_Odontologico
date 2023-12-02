@@ -13,10 +13,11 @@
 
         protected static $local_filename = "Procedure.txt";
 
-        public function __construct($type, $description, $value){
+        public function __construct($type, $description, $value, Specialization $specialization){
           $this->type = $type;
           $this->description = $description;
           $this->value = $value;
+          $this->specialization[] = $specialization;
         }
 
         static public function getFilename(){

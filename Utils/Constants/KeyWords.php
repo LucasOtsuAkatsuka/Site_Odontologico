@@ -1,9 +1,15 @@
 <?php
     $kewWords = [
-        'registerPatient',
+        'registerProcedure',
+        'registerSpecialization',
+        'registerPaymentType',
         'registerDentist',
-        'registerAuxiliary',
-        'registerSecretary',
-        'registerProcedure'
+        'registerPatient',
+        'registerClient',
+        'registerAppointment',
+        'registerBudget',
+        'approveBudget',
+        'calculateMonthlyFinances',
+        'registerStandardSchedule'
     ];
 ?>

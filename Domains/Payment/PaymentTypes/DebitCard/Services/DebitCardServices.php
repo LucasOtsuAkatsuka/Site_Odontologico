@@ -2,7 +2,7 @@
     require_once(__DIR__."../..//Model/DebitCard.php");
 
     class DebitCardServices{
-        function createCreditCard($tax){
+        function createDebitCard($tax){
             $creditCard = new DebitCard($tax);
             $creditCard->save();
         }
