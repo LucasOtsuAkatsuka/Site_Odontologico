@@ -4,12 +4,12 @@
     require_once(__DIR__."../../../../Utils/Functions/checkEmail.php");
 
     class PartnerDentistServices{
-        function createPartnerDentist($fullName, $email, $password, $phoneNumber, $CPF, $fullAddress, $salary, $comission, Profile $profile){
+        function createPartnerDentist($fullName, $email, $password, $phoneNumber, $CPF, $fullAddress, $salary, $comission, Profile $profile, StandardSchedule $standardSchedule){
             try{
                 checkEmail($email);
                 checkCpf($CPF);
 
-                $partnerDentist = new PartnerDentist($fullName, $email, $password, $phoneNumber, $CPF, $fullAddress, $salary, $comission, $profile);
+                $partnerDentist = new PartnerDentist($fullName, $email, $password, $phoneNumber, $CPF, $fullAddress, $salary, $comission, $profile, $standardSchedule);
                 $partnerDentist->save();
             }catch(Exception $e){
                 echo($e->getMessage().PHP_EOL);

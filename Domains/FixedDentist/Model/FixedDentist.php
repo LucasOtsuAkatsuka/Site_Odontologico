@@ -5,8 +5,8 @@
     class FixedDentist extends Dentist {
         private $CRO;
 
-        public function __construct($fullName, $email, $password, $phoneNumber, $CPF, $fullAddress, $salary, $CRO, Profile $profile){
-            parent::__construct($fullName, $email, $password, $phoneNumber, $salary, $fullAddress, $CPF, $profile);
+        public function __construct($fullName, $email, $password, $phoneNumber, $CPF, $fullAddress, $salary, $CRO, Profile $profile, StandardSchedule $standardSchedule){
+            parent::__construct($fullName, $email, $password, $phoneNumber, $salary, $fullAddress, $CPF, $profile, $standardSchedule);
             $this->CRO = $CRO;
         }
 
