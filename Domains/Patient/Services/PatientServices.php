@@ -1,7 +1,7 @@
 <?php
-    require_once(__DIR__ . '/../Model/Patient.php');
+    require_once(__DIR__."../../Model/Patient.php");
     require_once(__DIR__."../../../../Errors/NotFoundError.php");
-    require_once(__DIR__."../../../../Functions/checkRG.php");
+    require_once(__DIR__."../../../../Utils/Functions/checkRG.php");
 
     class PatientServices{
         function createPatient($fullName, $email, $phoneNumber, $RG, $birthDate,  $client){
@@ -13,10 +13,6 @@
             }catch(Exception $e){
                 throw new Exception($e->getMessage());
             }
-        }
-
-        function updatePatient(Patient $patient, $fullName, $email, $phoneNumber){
-            
         }
 
         function deletePatient($RG){

@@ -1,5 +1,5 @@
 <?php
-    require_once(__DIR__."../../../Patient/Model/Appointment.php");
+    require_once(__DIR__."../../../Appointment/Model/Appointment.php");
 
     class EvaluationAppointmentServices{
         function createEvaluationAppointment(Patient $patient, Dentist $appointmentDentist, $appointmentDate, $appointmentTime){

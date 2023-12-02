@@ -1,8 +1,8 @@
 <?php
     require_once(__DIR__."../../../Secretary/Model/Secretary.php");
     require_once(__DIR__."../../../../Errors/NotFoundError.php");
-    require_once(__DIR__."../../../../Functions/checkCpf.php");
-    require_once(__DIR__."../../../../Functions/checkEmail.php");
+    require_once(__DIR__."../../../../Utils/Functions/checkCpf.php");
+    require_once(__DIR__."../../../../Utils/Functions/checkEmail.php");
 
     class SecretaryServices{
         function createSecretary($fullName, $email, $password, $phoneNumber, $salary, $fullAddress, $CPF, Profile $profile){

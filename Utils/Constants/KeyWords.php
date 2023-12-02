@@ -4,6 +4,6 @@
         'registerDentist',
         'registerAuxiliary',
         'registerSecretary',
-        'temMaisCoisaColoco depoiskkk'
+        'registerProcedure'
     ];
 ?>

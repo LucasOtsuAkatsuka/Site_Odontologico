@@ -1,7 +1,7 @@
 <?php
-    require_once(__DIR__."../../Domains/Patient/Model/Patient.php");
-    require_once(__DIR__."../../Domains/Client/Model/Client.php");
-    require_once(__DIR__."../../Errors/InvalidParamsError.php");
+    require_once(__DIR__."../../../Domains/Patient/Model/Patient.php");
+    require_once(__DIR__."../../../Domains/Client/Model/Client.php");
+    require_once(__DIR__."../../../Errors/InvalidParamsError.php");
 
     function checkRG($RG){
         $patient = Patient::getRecordsByField("RG", $RG);

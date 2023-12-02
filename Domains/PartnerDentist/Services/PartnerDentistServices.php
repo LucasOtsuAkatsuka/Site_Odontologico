@@ -1,7 +1,7 @@
 <?php
-    require(__DIR__ . '/../Model/ParnerDentist.php');
-    require_once(__DIR__."../../../../Functions/checkCpf.php");
-    require_once(__DIR__."../../../../Functions/checkEmail.php");
+    require(__DIR__."../../Model/PartnerDentist.php");
+    require_once(__DIR__."../../../../Utils/Functions/checkCpf.php");
+    require_once(__DIR__."../../../../Utils/Functions/checkEmail.php");
 
     class PartnerDentistServices{
         function createPartnerDentist($fullName, $email, $password, $phoneNumber, $CPF, $fullAddress, $salary, $comission, Profile $profile){

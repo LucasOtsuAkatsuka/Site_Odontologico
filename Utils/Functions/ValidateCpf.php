@@ -1,5 +1,5 @@
 <?php    
-    require(__DIR__."../../Errors/InvalidParamsError.php");
+    require(__DIR__."../../../Errors/InvalidParamsError.php");
 
     function validateCPF($cpf){
         // Extrai somente os números

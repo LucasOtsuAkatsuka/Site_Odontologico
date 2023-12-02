@@ -8,14 +8,16 @@
     class Budget extends persist{
         private Patient $patient;
         private Dentist $responsibleDentist;
-        private Procedure $procedures = array();
+        private $procedures = array();
 
         private $budgetDate;
         private $totalValue;
-
-        private $isApproved = false;
-        private $paymentType = null;
         private $detailedDescription;
+        
+        //Tratamento
+        private $paymentRecords = array();
+        private ?PaymentType $paymentType = null; //valor é atualizado após o orçamento ser aprovado
+        private $isApproved = false; //se for true o orçamento virou um tratamento
 
         protected static $local_filename = "Budget.txt";
 

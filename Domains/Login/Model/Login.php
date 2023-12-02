@@ -1,6 +1,6 @@
 <?php
     require_once(__DIR__."../../../../Errors/PermissionError.php");
-    require_once(__DIR__."../../../../Functions/verifyCredentials.php");
+    require_once(__DIR__."../../../../Utils/Functions/VerifyCredentials.php");
     require_once(__DIR__."../../../User/Model/User.php");
 
     class Login{

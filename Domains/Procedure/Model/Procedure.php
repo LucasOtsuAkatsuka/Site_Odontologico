@@ -1,14 +1,15 @@
 <?php
-  require(__DIR__."../../../../Database/persist.php");
+  require_once(__DIR__."../../../../Database/persist.php");
   require_once(__DIR__."../../../Appointment/Model/Appointment.php");
-  require_once(__DIR__."../../../Errors/InvalidParamsError.php");
+  require_once(__DIR__."../../../../Errors/InvalidParamsError.php");
 
     class Procedure extends persist{
         private $type;
         private $description;
         private $value;
-        private Appointment $appointments = array();
-        private Specialization $specialization = array();
+        private bool $isCompleted = false;
+        private $appointments = array();
+        private $specialization = array();
 
         protected static $local_filename = "Procedure.txt";
 
@@ -31,20 +32,12 @@
         public function setDescription($description){$this->description = $description;}
         public function setValue($value){$this->value = $value;}
         
-        public function addAppointments($appointment){
-          if($appointment instanceof Appointment){
+        public function addAppointments(Appointment $appointment){
             $this->appointments[] = $appointment; 
-          } else {
-            throw new InvalidParamsError("Invalid appointment");
-          }
         }
 
-        public function addSpecialization($specialization){
-          if($specialization instanceof Specialization){
+        public function addSpecialization(Specialization $specialization){
               $this->specialization[] = $specialization;
-          } else {
-              throw new InvalidParamsError("Invalid specialization");
-          }
       }
     }
 ?>

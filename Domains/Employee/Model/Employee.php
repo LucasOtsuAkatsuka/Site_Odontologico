@@ -1,5 +1,5 @@
 <?php
-    require_once(__DIR__."../../../../Functions/ValidateCpf.php");
+    require_once(__DIR__."../../../../Utils/Functions/ValidateCpf.php");
     require_once(__DIR__."../../../User/Model/User.php");
 
     class Employee extends User{
@@ -7,14 +7,13 @@
         private $fullAddress;
         protected $CPF;
 
-        public function __construct($fullName, $email, $password, $phoneNumber, $salary ,$fullAddress ,$CPF, Profile $profile) 
-      {
+        public function __construct($fullName, $email, $password, $phoneNumber, $salary ,$fullAddress ,$CPF, Profile $profile){
           parent::__construct($fullName, $email, $password, $phoneNumber, $profile); // Chama o construtor da classe Pai
           $this->salary = $salary;
           $this->fullAddress = $fullAddress;
           validateCPF($CPF);
           $this->CPF = $CPF;
-      }
+        }
       
         public function getSalary(){return $this->salary;}
         public function getAddress(){return $this->fullAddress;}

@@ -39,5 +39,5 @@
         }
     }
 
-    return new ClientServices();
+    return new ProcedureServices();
 ?>

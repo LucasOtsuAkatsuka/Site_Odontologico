@@ -1,23 +1,19 @@
 <?php
     require_once(__DIR__ . '/../Model/FixedDentist.php');
-    require_once(__DIR__."../../../../Functions/checkCpf.php");
-    require_once(__DIR__."../../../../Functions/checkEmail.php");
+    require_once(__DIR__."../../../../Utils/Functions/CheckCpf.php");
+    require_once(__DIR__."../../../../Utils/Functions/CheckEmail.php");
 
     class FixedDentistServices{
-        function createFixedDentist($fullName, $email, $password, $phoneNumber, $CPF, $fullAddress, $salary, $CRO, Specialization $specialization, Profile $profile){
+        function createFixedDentist($fullName, $email, $password, $phoneNumber, $CPF, $fullAddress, $salary, $CRO, Profile $profile){
             try{
                 checkEmail($email);
                 checkCpf($CPF);
 
-                $fixedDentist = new FixedDentist($fullName, $email, $password, $phoneNumber, $CPF, $fullAddress, $salary, $CRO, $specialization, $profile);
+                $fixedDentist = new FixedDentist($fullName, $email, $password, $phoneNumber, $CPF, $fullAddress, $salary, $CRO, $profile);
                 $fixedDentist->save();
             }catch(Exception $e){
                 throw new Exception($e->getMessage());
             }
-        }
-
-        function updateFixedDentist(FixedDentist $fixedDentist, $specialization){
-            $fixedDentist->setSpecialization($specialization);
         }
 
         function deleteFixedDentist($CPF){
