@@ -12,7 +12,7 @@
                 $client = new Client($fullName, $email, $phoneNumber, $RG, $CPF);
                 $client->save();
             }catch(Exception $e){
-                throw new Exception($e->getMessage());
+                echo($e->getMessage().PHP_EOL);
             }
         }
 
@@ -26,7 +26,7 @@
 
                 $client->delete();
             }catch (Exception $e){
-                throw new Exception($e->getMessage());
+                echo($e->getMessage().PHP_EOL);
             }
         }
         

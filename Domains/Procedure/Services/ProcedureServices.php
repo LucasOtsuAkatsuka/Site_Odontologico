@@ -8,7 +8,7 @@
                 $procedure = new Procedure($type, $description, $value);
                 $procedure->save();
             }catch(Exception $e){
-                throw new Exception($e->getMessage());
+                echo($e->getMessage().PHP_EOL);
             }
         }
 
@@ -18,7 +18,7 @@
 
                 $procedure->delete();
             }catch(Exception $e){
-                throw new Exception($e->getMessage());
+                echo($e->getMessage().PHP_EOL);
             }
         }
         

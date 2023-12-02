@@ -9,18 +9,18 @@
 
         public function login($email, $password){
             if($this->isLogged() == true)
-                throw new PermissionError("VocÊ já está logado no sistema");
+                throw new PermissionError("Você já está logado no sistema");
     
             $this->loggedUser = verifyCredentials($email, $password);
             session_start();
-            echo("Login realizado com sucesso");
+            echo("Login realizado com sucesso" .PHP_EOL);
             $this->isLogged = true;
         }
 
         public function logout(){
             if($this->isLogged() == true){
                 session_destroy();
-                echo("Logout realizado com sucesso");
+                echo("Logout realizado com sucesso".PHP_EOL);
                 $this->isLogged = false;
             }else
                 throw new PermissionError("Você precisa estar logado para fazer isso");            

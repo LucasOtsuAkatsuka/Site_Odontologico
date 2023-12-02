@@ -13,7 +13,7 @@
                 $auxiliary = new Auxiliary($fullName, $email, $password, $phoneNumber, $salary, $fullAddress, $CPF, $profile);
                 $auxiliary->save();
             }catch(Exception $e){
-                throw new Exception($e->getMessage());
+                echo($e->getMessage().PHP_EOL);
             }
         }
 
@@ -23,7 +23,7 @@
 
                 $auxiliary->delete();
             }catch (Exception $e){
-                throw new Exception($e->getMessage());
+                echo($e->getMessage().PHP_EOL);
             }
         }
         

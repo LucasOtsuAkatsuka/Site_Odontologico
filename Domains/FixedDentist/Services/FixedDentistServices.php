@@ -12,7 +12,7 @@
                 $fixedDentist = new FixedDentist($fullName, $email, $password, $phoneNumber, $CPF, $fullAddress, $salary, $CRO, $profile);
                 $fixedDentist->save();
             }catch(Exception $e){
-                throw new Exception($e->getMessage());
+                echo($e->getMessage().PHP_EOL);
             }
         }
 
@@ -22,7 +22,7 @@
 
                 $fixedDentist->delete();
             }catch (Exception $e){
-                throw new Exception($e->getMessage());
+                echo($e->getMessage().PHP_EOL);
             }
         }
         

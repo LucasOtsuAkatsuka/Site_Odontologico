@@ -8,7 +8,7 @@
                 $budget= new Budget($patient, $responsibleDentist, $procedures, $budgetDate, $detailedDescription);
                 $budget->save();
             }catch(Exception $e){
-                throw new Exception($e->getMessage());
+                echo($e->getMessage().PHP_EOL);
             }
         }
 
@@ -18,7 +18,7 @@
 
                 $budget->delete();
             }catch (Exception $e){
-                throw new Exception($e->getMessage());
+                echo($e->getMessage().PHP_EOL);
             }
         }
         

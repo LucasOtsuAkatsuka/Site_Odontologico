@@ -8,7 +8,7 @@
                 $appointment = new Appointment($patient, $appointmentDentist, $appointmentDate, $appointmentTime, $expectedDuration);
                 $appointment->save();
             }catch(Exception $e){
-                throw new Exception($e->getMessage());
+                echo($e->getMessage().PHP_EOL);
             }
         }
 
@@ -22,7 +22,7 @@
 
                 $appointment->delete();
             }catch (Exception $e){
-                throw new NotFoundError($e->getMessage());
+                echo($e->getMessage().PHP_EOL);
             }
         }
         

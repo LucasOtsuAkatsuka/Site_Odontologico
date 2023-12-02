@@ -9,7 +9,7 @@
 
                 $profile->save();
             }catch(Exception $e){
-                throw new Exception($e->getMessage());
+                echo($e->getMessage().PHP_EOL);
             }
         }
 
@@ -19,7 +19,7 @@
 
                 $profile->delete();
             }catch (Exception $e){
-                throw new Exception($e->getMessage());
+                echo($e->getMessage().PHP_EOL);
             }
         }
         

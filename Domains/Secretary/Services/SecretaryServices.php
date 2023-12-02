@@ -13,7 +13,7 @@
                 $secretary = new Secretary($fullName, $email, $password, $phoneNumber, $salary, $fullAddress, $CPF, $profile);
                 $secretary->save();
             }catch(Exception $e){
-                throw new Exception($e->getMessage());
+                echo($e->getMessage().PHP_EOL);
             }
         }
 
@@ -23,7 +23,7 @@
 
                 $secretary->delete();
             }catch (Exception $e){
-                throw new Exception($e->getMessage());
+                echo($e->getMessage().PHP_EOL);
             }
         }
         

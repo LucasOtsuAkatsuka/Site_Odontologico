@@ -8,7 +8,7 @@
                 $specialization = new Specialization($specializationDescription);
                 $specialization->save();
             }catch(Exception $e){
-                throw new Exception($e->getMessage());
+                echo($e->getMessage().PHP_EOL);
             }
         }
 
@@ -18,7 +18,7 @@
 
                 $specialization->delete();
             }catch(Exception $e){
-                throw new Exception($e->getMessage());
+                echo($e->getMessage().PHP_EOL);
             }
         }
         
