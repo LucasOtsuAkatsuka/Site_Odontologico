@@ -1,38 +1,91 @@
 <?php
     //Incluindo os Services das classes
-        $AppointmentServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/Appointment/Services/AppointmentServices.php");
-        $AuxiliaryServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/Auxiliary/Services/AuxiliaryServices.php");
-        $BudgetServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/Budget/Services/BudgetServices.php");
-        $ClientServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/Client/Services/ClientServices.php");
-        $EvaluationAppointmentServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/EvaluationAppointment/Services/EvaluationAppointmentServices.php");
-        $FixedDentistServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/FixedDentist/Services/FixedDentistServices.php");
-        $PartnerDentistServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/PartnerDentist/Services/PartnerDentistServices.php");
-        $PartnerSpecializationServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/PartnerSpecialization/Services/PartnerSpecializationServices.php");
-        $PatientServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/Patient/Services/PatientServices.php");
-        $PaymentRecordsServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/Payment/PaymentRecord/Services/PaymentRecordServices.php");
-        $CreditCardServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/Payment/PaymentTypes/CreditCard/Services/CreditCardServices.php");
-        $DebitCardServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/Payment/PaymentTypes/DebitCard/Services/DebitCardServices.php");
-        $MoneyServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/Payment/PaymentTypes/Money/Services/MoneyServices.php");
-        $PIXServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/Payment/PaymentTypes/PIX/Services/PIXServices.php");
-        $ProcedureServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/Procedure/Services/ProcedureServices.php");
-        $ProcedureDescriptionServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/ProcedureDescription/Services/ProcedureDescriptionServices.php");
-        $ProfileServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/Profile/Services/ProfileServices.php");
-        $SecretaryServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/Secretary/Services/SecretaryServices.php");
-        $SpecializationServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/Specialization/Services/SpecializationServices.php");
-        $StandardScheduleServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/StandardSchedule/Services/StandardScheduleServices.php");
+    $AppointmentServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/Appointment/Services/AppointmentServices.php");
+    $AuxiliaryServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/Auxiliary/Services/AuxiliaryServices.php");
+    $BudgetServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/Budget/Services/BudgetServices.php");
+    $ClientServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/Client/Services/ClientServices.php");
+    $EvaluationAppointmentServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/EvaluationAppointment/Services/EvaluationAppointmentServices.php");
+    $FixedDentistServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/FixedDentist/Services/FixedDentistServices.php");
+    $PartnerDentistServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/PartnerDentist/Services/PartnerDentistServices.php");
+    $PartnerSpecializationServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/PartnerSpecialization/Services/PartnerSpecializationServices.php");
+    $PatientServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/Patient/Services/PatientServices.php");
+    $PaymentRecordsServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/Payment/PaymentRecord/Services/PaymentRecordServices.php");
+    $CreditCardServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/Payment/PaymentTypes/CreditCard/Services/CreditCardServices.php");
+    $DebitCardServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/Payment/PaymentTypes/DebitCard/Services/DebitCardServices.php");
+    $MoneyServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/Payment/PaymentTypes/Money/Services/MoneyServices.php");
+    $PIXServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/Payment/PaymentTypes/PIX/Services/PIXServices.php");
+    $ProcedureServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/Procedure/Services/ProcedureServices.php");
+    $ProcedureDescriptionServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/ProcedureDescription/Services/ProcedureDescriptionServices.php");
+    $ProfileServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/Profile/Services/ProfileServices.php");
+    $SecretaryServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/Secretary/Services/SecretaryServices.php");
+    $SpecializationServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/Specialization/Services/SpecializationServices.php");
+    $StandardScheduleServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/StandardSchedule/Services/StandardScheduleServices.php");
 
-    //Classe para fazer Login
-        require_once(__DIR__."../../Project-POO-UFMG/Domains/Login/Model/Login.php");
-        $login = new Login();
+    require_once(__DIR__."../../Project-POO-UFMG/Domains/Login/Model/Login.php");
+    $login = new Login();
 
     //Funções
         require_once(__DIR__."../../Project-POO-UFMG/Utils/Functions/CheckPermission.php");
 
+    //Roda o teste por input do teclado
+        while (true) {
+            echo PHP_EOL."Digite o nome do teste (ou 'parar' para encerrar): ";
+            $nomeDoTeste = trim(fgets(STDIN));
+    
+            executarTeste($nomeDoTeste);
+        }
+
+        function executarTeste($nomeDoTeste){
+            switch($nomeDoTeste){
+                case 'teste1':
+                    teste1();
+                    break;
+                case 'teste2':
+                    teste2();
+                    break;
+                case 'teste3':
+                    teste3();
+                    break;
+                case 'teste4':
+                    teste4();
+                    break;
+                case 'teste5':
+                    teste5();
+                    break;
+                case 'teste6':
+                    teste6();
+                    break;
+                case 'teste7':
+                    teste7();
+                    break;
+                case 'teste8':
+                    teste8();
+                    break;
+                case 'teste9':
+                    teste9();
+                    break;
+                case 'teste10':
+                    teste10();
+                    break;
+                case 'teste11':
+                    teste11();
+                    break;
+                case 'teste12':
+                    teste12();
+                    break;
+                case 'parar':
+                    echo "Programa encerrado.\n";
+                    exit;
+                default:
+                    echo "Teste não encontrado.\n";
+            }
+        }
+    
     //Testes  
     //Tenta cadastrar um procedimento sem estar logado
     function teste1(){
         try{
-            echo("Iniciando Teste 1...".PHP_EOL);
+            echo(PHP_EOL.PHP_EOL.PHP_EOL."Iniciando Teste 1...".PHP_EOL);
 
             global $login;
             $login->getLogged();
@@ -465,58 +518,5 @@
         }catch(Exception $e){
             echo($e->getMessage().PHP_EOL);
         }
-    }
-    function executarTeste($nomeDoTeste) {
-        switch ($nomeDoTeste) {
-            case 'teste1':
-                teste1();
-                break;
-            case 'teste2':
-                teste2();
-                break;
-            case 'teste3':
-                teste3();
-                break;
-            case 'teste4':
-                teste4();
-                break;
-            case 'teste5':
-                teste5();
-                break;
-            case 'teste6':
-                teste6();
-                break;
-            case 'teste7':
-                teste7();
-                break;
-            case 'teste8':
-                teste8();
-                break;
-            case 'teste9':
-                teste9();
-                break;
-            case 'teste10':
-                teste10();
-                break;
-            case 'teste11':
-                teste11();
-                break;
-            case 'teste12':
-                teste12();
-                break;
-            case 'parar':
-                echo "Programa encerrado.\n";
-                exit;
-            default:
-                echo "Teste não encontrado.\n";
-        }
-    }
-
-    //Roda o teste por input do teclado
-    while (true) {
-        echo "Digite o nome do teste (ou 'parar' para encerrar): ".PHP_EOL;
-        $nomeDoTeste = trim(fgets(STDIN));
-
-        executarTeste($nomeDoTeste);
     }
 ?>
