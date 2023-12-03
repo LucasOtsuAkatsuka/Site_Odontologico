@@ -21,22 +21,31 @@
 
         protected static $local_filename = "Budget.txt";
 
-        public function __construct(Patient $patient, Dentist $responsibleDentist, Procedure $procedures, $budgetDate, $detailedDescription){
+        public function __construct(Patient $patient, Dentist $responsibleDentist, $procedures, $budgetDate){
             $this->patient = $patient;
             $this->responsibleDentist = $responsibleDentist;
-            $this->procedures = $procedures;
+            $this->procedures = array_merge($this->procedures, $procedures);
 
             $this->budgetDate = $budgetDate;
-            $this->detailedDescription = $detailedDescription;
 
             foreach($procedures as $procedure){
                 $this->totalValue += $procedure->getValue();
             }
         }
 
-        public function approveBudget($paymentType){
+        public function approveBudget(PaymentType $paymentType){
+            if($this->isApproved == true){
+                throw new PermissionError("Orçamento já aprovado!");
+            }
+
             $this->isApproved = true;
             $this->paymentType = $paymentType;
+
+            echo("Orçamento aprovado com sucesso");
+        }
+
+        public function recordPayment(PaymentRecord $paymentRecord){
+            $this->paymentRecords[] = $paymentRecord;
         }
 
         static public function getFilename(){

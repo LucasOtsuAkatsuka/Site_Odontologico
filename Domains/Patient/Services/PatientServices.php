@@ -4,7 +4,7 @@
     require_once(__DIR__."../../../../Utils/Functions/checkRG.php");
 
     class PatientServices{
-        function createPatient($fullName, $email, $phoneNumber, $RG, $birthDate,  $client){
+        function createPatient($fullName, $email, $phoneNumber, $RG, $birthDate, Client $client){
             try{
                 checkRG($RG);
 

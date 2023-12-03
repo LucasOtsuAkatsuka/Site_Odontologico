@@ -12,14 +12,12 @@
                 throw new PermissionError("Você já está logado no sistema");
     
             $this->loggedUser = verifyCredentials($email, $password);
-            session_start();
             echo("Login realizado com sucesso" .PHP_EOL);
             $this->isLogged = true;
         }
 
         public function logout(){
             if($this->isLogged() == true){
-                session_destroy();
                 echo("Logout realizado com sucesso".PHP_EOL);
                 $this->isLogged = false;
             }else

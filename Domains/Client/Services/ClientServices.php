@@ -15,11 +15,7 @@
                 echo($e->getMessage().PHP_EOL);
             }
         }
-
-        function updateClient(Client $client, $fullName, $email, $phoneNumber){
-
-        }
-
+        
         function deleteClient($CPF){
             try{
                 $client = $this->getClient($CPF);

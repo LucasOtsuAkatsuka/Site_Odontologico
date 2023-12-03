@@ -6,7 +6,7 @@
         protected static $local_filename = "StandardSchedule.txt";
 
         public function __construct($availability){
-            $this->$availability = $availability;
+            $this->availability = $availability;
         }
 
         public function addAvailability($availability){

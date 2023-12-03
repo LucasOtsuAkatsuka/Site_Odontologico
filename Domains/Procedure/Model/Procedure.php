@@ -33,7 +33,7 @@
         public function setDescription($description){$this->description = $description;}
         public function setValue($value){$this->value = $value;}
         
-        public function addAppointments(Appointment $appointment){
+        public function addAppointment(Appointment $appointment){
             $this->appointments[] = $appointment; 
         }
 

@@ -37,6 +37,6 @@
         public function setPhoneNumber($phoneNumber){$this->phoneNumber = $phoneNumber;}
         public function setRG($RG){$this->RG = $RG;}
         public function setBirthDate($birthDate){$this->birthDate = $birthDate;}
-        public function setClient($client){$this->client = $client;}
+        public function setClient(Client $client){$this->client = $client;}
     }
 ?>

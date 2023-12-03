@@ -11,10 +11,6 @@
             }
         }
 
-        function updateAppointment(Appointment $Appointment, $fullName, $email, $phoneNumber){
-            
-        }
-
         function deleteEvaluationAppointment($index){
             try{
                 $appointment = $this->getEvaluationAppointment($index);
@@ -42,8 +38,4 @@
         }
     }
 
-
-
-
-
-
+return new EvaluationAppointmentServices();

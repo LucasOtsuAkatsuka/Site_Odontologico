@@ -35,14 +35,14 @@
                 $this->insert();            
         }
 
-        private function insert() {           
+        public function insert() {           
             $container = new container(get_called_class()::getFilename());
             //print_r(get_called_class()::getFilename()); exit();                     
             $container->addObject($this);
             $container->persist();
         }
 
-        private function edit() {            
+        public function edit() {            
             $container = new container(get_called_class()::getFilename());                  
             $container->editObject( $this->index, $this );
             $container->persist();

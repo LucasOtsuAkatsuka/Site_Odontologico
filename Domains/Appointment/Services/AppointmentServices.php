@@ -12,10 +12,6 @@
             }
         }
 
-        function updateAppointment(Appointment $Appointment, $fullName, $email, $phoneNumber){
-            
-        }
-
         function deleteAppointment($index){
             try{
                 $appointment = $this->getAppointment($index);

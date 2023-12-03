@@ -18,6 +18,12 @@
             $this->appointmentDate = $appointmentDate;
             $this->appointmentTime = $appointmentTime;
             $this->expectedDuration = $expectedDuration;
+
+            //Checa se há agenda disponível
+            if(!$this->isAppointmentValid()) {
+                throw new InvalidParamsError("Horário indisponível");
+            }else
+                echo("Consulta cadastrada com sucesso".PHP_EOL);
         }
 
         static public function getFilename(){
@@ -36,6 +42,28 @@
         public function setAppointmentTime($appoitmentTime){$this->appointmentTime = $appoitmentTime;}
         public function setExpectedDuration($expectedDuration){$this->expectedDuration = $expectedDuration;}
         
-    }
+        function compareTimes($time1, $time2) {
+            return strtotime($time1) - strtotime($time2);
+        }
 
+        private function isAppointmentValid() {
+            $standardScheduleArray = $this->appointmentDentist->getSchedule();
+
+            foreach($standardScheduleArray as $day => $time){
+                if($day == $this->appointmentDate){
+                    list($startTime, $endTime) = explode('-', $time);
+                    
+                    $minutesStart = date('i', strtotime($startTime)) + date('H', strtotime($startTime)) * 60;
+                    $minutesEnd = date('i', strtotime($endTime)) + date('H', strtotime($endTime)) * 60;
+                    $minutesAppointment = date('i', strtotime($this->appointmentTime)) + date('H', strtotime($this->appointmentTime)) * 60;
+
+                    if($minutesAppointment >= $minutesStart && $minutesAppointment <= $minutesEnd){
+                        return true;
+                    }else
+                        return false;
+                }
+            }
+        }
+    
+    }
 ?>

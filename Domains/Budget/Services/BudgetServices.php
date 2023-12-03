@@ -3,9 +3,9 @@
     require_once(__DIR__."../../../../Errors/NotFoundError.php");
 
     class BudgetServices{
-        function createBudget(Patient $patient, Dentist $responsibleDentist, Procedure $procedures, $budgetDate, $detailedDescription){
+        function createBudget(Patient $patient, Dentist $responsibleDentist, $procedures, $budgetDate){
             try{
-                $budget= new Budget($patient, $responsibleDentist, $procedures, $budgetDate, $detailedDescription);
+                $budget= new Budget($patient, $responsibleDentist, $procedures, $budgetDate);
                 $budget->save();
             }catch(Exception $e){
                 echo($e->getMessage().PHP_EOL);
