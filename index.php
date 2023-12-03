@@ -28,8 +28,13 @@
         require_once(__DIR__."../../Project-POO-UFMG/Utils/Functions/CheckPermission.php");
 
     //Roda o teste por input do teclado
+        echo PHP_EOL."Digite o nome do teste (Teste1 - Teste11), ou 'parar' para encerrar, ou 'login' para logar como Adm': ";
+        $nomeDoTeste = trim(fgets(STDIN));
+    
+        executarTeste($nomeDoTeste);
+
         while (true) {
-            echo PHP_EOL."Digite o nome do teste (ou 'parar' para encerrar): ";
+            echo PHP_EOL."Digite o próximo comando: ";
             $nomeDoTeste = trim(fgets(STDIN));
     
             executarTeste($nomeDoTeste);
@@ -37,6 +42,12 @@
 
         function executarTeste($nomeDoTeste){
             switch($nomeDoTeste){
+                case 'login':
+                    logIn();
+                    break;
+                case 'logout':
+                    logOut();
+                    break;
                 case 'teste1':
                     teste1();
                     break;
@@ -103,6 +114,7 @@
         try{
             echo(PHP_EOL.PHP_EOL.PHP_EOL."Iniciando Teste 2...".PHP_EOL);
 
+            /*Trecho de código para criar o usuário para o teste
             $profileType = "Perfil1";
             global $ProfileServices;
             $ProfileServices->createProfile($profileType);
@@ -123,7 +135,8 @@
 
             global $AuxiliaryServices;
             $AuxiliaryServices->createAuxiliary("Teste1", "email1@gmail.com", "senha1", "(11) 9111-1111", 150, "endereço1", "065.672.430-74", $profile);
-            
+            */
+
             global $login;
             $login->login("email1@gmail.com", "senha1");
             $user = $login->getLogged();
@@ -144,6 +157,7 @@
         try{
             echo(PHP_EOL.PHP_EOL.PHP_EOL."Iniciando Teste 3...".PHP_EOL);
 
+            /*Trecho de código para criar o usuário com todas as permissões
             $profileType = "Administrador";
             global $ProfileServices;
             $ProfileServices->createProfile($profileType);
@@ -165,6 +179,7 @@
             
             global $AuxiliaryServices;
             $AuxiliaryServices->createAuxiliary("Adm", "emailADM@gmail.com", "senhaADM", "(ADM) TEL-ADM", 150, "endereçoADM", "913.498.150-04", $profile);
+            */
             
             global $login;
             $login->login("emailADM@gmail.com", "senhaADM");
@@ -515,6 +530,26 @@
 
             print_r($budget);
             
+        }catch(Exception $e){
+            echo($e->getMessage().PHP_EOL);
+        }
+    }
+
+    //Permite fazer login com o usuário com todas as permissões caso necessário
+    function logIn(){
+        try{
+            global $login;
+            $login->login("emailADM@gmail.com", "senhaADM");
+        }catch(Exception $e){
+            echo($e->getMessage().PHP_EOL);
+        }
+    }
+
+    //Permite fazer logout caso necessário
+    function logOut(){
+        try{
+            global $login;
+            $login->logout();
         }catch(Exception $e){
             echo($e->getMessage().PHP_EOL);
         }
