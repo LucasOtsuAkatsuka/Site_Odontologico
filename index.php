@@ -141,6 +141,9 @@
             $login->login("email1@gmail.com", "senha1");
             $user = $login->getLogged();
 
+            print_r($user);
+            echo PHP_EOL;
+
             checkPermission($user, "registerProcedure");
 
             global $ProcedureServices;
@@ -184,6 +187,9 @@
             global $login;
             $login->login("emailADM@gmail.com", "senhaADM");
             $user = $login->getLogged();
+
+            print_r($user);
+            echo PHP_EOL;
         
             checkPermission($user, "registerSpecialization");
             global $SpecializationServices;
