@@ -19,6 +19,7 @@
     $ProfileServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/Profile/Services/ProfileServices.php");
     $SecretaryServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/Secretary/Services/SecretaryServices.php");
     $SpecializationServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/Specialization/Services/SpecializationServices.php");
+    $StandardScheduleServices = require_once(__DIR__."../../Project-POO-UFMG/Domains/StandardSchedule/Services/StandardScheduleServices.php");
 
 //Classe para fazer Login
     require_once(__DIR__."../../Project-POO-UFMG/Domains/Login/Model/Login.php");
@@ -83,7 +84,7 @@ function teste3(){
         global $ProfileServices;
         $ProfileServices->createProfile($profileType);
 
-        $profile = $ProfileServices->getProfile(1);
+        $profile = $ProfileServices->getProfile(1); //mudar para 2 depois
         $profile->addPermissions('registerProcedure');
         $profile->addPermissions('registerSpecialization');
         $profile->addPermissions('registerPaymentType');
@@ -153,26 +154,71 @@ function teste4(){
 //Cadastra um dentista fixo e um dentista parceiro
 function teste5(){
     try{
-        global $login;
-        $user = $login->getLogged();
-
-        global $PartnerDentistServices;
-        global $FixedDentistServices;
-
-        checkPermission($user, "registerDentist");
-        
         global $SpecializationServices;
         $specialization1 = $SpecializationServices->getSpecialization(1); //Clínica Geral
         $specialization2 = $SpecializationServices->getSpecialization(2); //Edotontia
         $specialization3 = $SpecializationServices->getSpecialization(3); //Cirurgia
         $specialization4 = $SpecializationServices->getSpecialization(4); //Estética
+    
+        global $login;
+        $user = $login->getLogged();
+
+        checkPermission($user, "registerDentist");
+        checkPermission($user, "registerStandardSchedule");
+
+
+        
+
+        $profileType = "Dentista";
+        global $ProfileServices;
+        $ProfileServices->createProfile($profileType);
+        $profileFixed = $ProfileServices->getProfile(2); //Mudar para 3 depois
+
+        $standardScheduleArray1 = [
+            "Segunda" => "8-17",
+            "Terça" => "8-17",
+            "Quarta" => "8-17",
+            "Quinta" => "8-17",
+            "Sexta" => "8-17"
+        ];
+        global $StandardScheduleServices;
+        $StandardScheduleServices->createStandardSchedule($standardScheduleArray1);
+        $standardSchedule1 = $StandardScheduleServices->getStandardSchedule(1);
+
+        global $FixedDentistServices;
+        $FixedDentistServices->createFixedDentist("DentistaFixo", "dentistafixo@gmail.com", "senhaFixo", "telefoneFixo", "146.258.600-75", "endereçoFixo", 5000.00, "CRO", $profileFixed , $standardSchedule1);
+        $fixedDentist = $FixedDentistServices->getFixedDentist("146.258.600-75");
+        $fixedDentist->addSpecialization($specialization1);
+        $fixedDentist->addSpecialization($specialization2);
+        $fixedDentist->addSpecialization($specialization3);
+
+        $profileType = "DentistaParceiro";
+        $ProfileServices->createProfile($profileType);
+        $profilePartner = $ProfileServices->getProfile(3); //Mudar para 4 depois
+
+        $standardScheduleArray2 = [
+            "Segunda" => "8-12",
+            "Terça" => "14-17:30",
+            "Quarta" => "14-17:30",
+            "Quinta" => "14-17:30",
+            "Sexta" => "8-12"
+        ];
+        $StandardScheduleServices->createStandardSchedule($standardScheduleArray2);
+        $standardSchedule2 = $StandardScheduleServices->getStandardSchedule(2);
+
+        global $PartnerDentistServices;
+        $PartnerDentistServices->createPartnerDentist("DentistaParceiro", "dentistaparceiro@gmail.com", "senhaParceiro", "telefoneParceiro", "059.421.410-61", "endereçoParceiro", 0.00, $profilePartner , $standardSchedule2);
+        $partnerDentist = $PartnerDentistServices->getPartnerDentist("059.421.410-61");
+        $partnerDentist->addSpecialization($specialization1);
+        $partnerDentist->addSpecialization($specialization4);
+        print_r($partnerDentist);
         
     }catch(Exception $e){
         echo($e->getMessage().PHP_EOL);
     }
 }
 
-
-
+teste3();
+teste5();
 
 ?>
