@@ -44,8 +44,8 @@
             echo("Orçamento aprovado com sucesso");
         }
 
-        public function recordPayment(PaymentRecord $paymentRecord){
-            $this->paymentRecords[] = $paymentRecord;
+        public function recordPayment($paymentRecords){
+            $this->paymentRecords[] = array_merge($this->paymentRecords, $paymentRecords);
         }
 
         static public function getFilename(){
@@ -60,7 +60,6 @@
         public function getPaymentType(){return $this->paymentType;}
         public function getApproved(){return $this->isApproved;}
         public function getDetailedDescription(){return $this->detailedDescription;}
-
 
         public function setPatient($patient){$this->patient = $patient;}
         public function setResponsibleDentist($responsibleDentist){$this->responsibleDentist = $responsibleDentist;}

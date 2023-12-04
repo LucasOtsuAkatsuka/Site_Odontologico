@@ -28,7 +28,7 @@
         require_once(__DIR__."../../Project-POO-UFMG/Utils/Functions/CheckPermission.php");
 
     //Roda o teste por input do teclado
-        echo PHP_EOL."Digite o nome do teste (Teste1 - Teste11), ou 'parar' para encerrar, ou 'login' para logar como Adm': ";
+        echo PHP_EOL."Digite o nome do teste, ou 'todos' para rodar todos, ou 'parar' para encerrar, ou 'login' para logar como Adm': ".PHP_EOL;
         $nomeDoTeste = trim(fgets(STDIN));
     
         executarTeste($nomeDoTeste);
@@ -84,6 +84,28 @@
                 case 'teste12':
                     teste12();
                     break;
+                case 'teste13':
+                    teste13();
+                    break;
+                case 'teste14':
+                    teste14();
+                    break;
+                case 'todos':
+                    teste1();
+                    teste2();
+                    teste3();
+                    teste4();
+                    teste5();
+                    teste6();
+                    teste7();
+                    teste8();
+                    teste9();
+                    teste10();
+                    teste11();
+                    teste12();
+                    teste13();
+                    teste14();
+                    break;
                 case 'parar':
                     echo "Programa encerrado.\n";
                     exit;
@@ -114,7 +136,7 @@
         try{
             echo(PHP_EOL.PHP_EOL.PHP_EOL."Iniciando Teste 2...".PHP_EOL);
 
-            /*Trecho de código para criar o usuário para o teste
+    
             $profileType = "Perfil1";
             global $ProfileServices;
             $ProfileServices->createProfile($profileType);
@@ -135,7 +157,7 @@
 
             global $AuxiliaryServices;
             $AuxiliaryServices->createAuxiliary("Teste1", "email1@gmail.com", "senha1", "(11) 9111-1111", 150, "endereço1", "065.672.430-74", $profile);
-            */
+            
 
             global $login;
             $login->login("email1@gmail.com", "senha1");
@@ -160,7 +182,7 @@
         try{
             echo(PHP_EOL.PHP_EOL.PHP_EOL."Iniciando Teste 3...".PHP_EOL);
 
-            /*Trecho de código para criar o usuário com todas as permissões
+            
             $profileType = "Administrador";
             global $ProfileServices;
             $ProfileServices->createProfile($profileType);
@@ -182,7 +204,7 @@
             
             global $AuxiliaryServices;
             $AuxiliaryServices->createAuxiliary("Adm", "emailADM@gmail.com", "senhaADM", "(ADM) TEL-ADM", 150, "endereçoADM", "913.498.150-04", $profile);
-            */
+            
             
             global $login;
             $login->login("emailADM@gmail.com", "senhaADM");
@@ -305,9 +327,10 @@
             global $PartnerDentistServices;
             $PartnerDentistServices->createPartnerDentist("DentistaParceiro", "dentistaparceiro@gmail.com", "senhaParceiro", "telefoneParceiro", "059.421.410-61", "endereçoParceiro", 0.00, $profilePartner , $standardSchedule2);
             $partnerDentist = $PartnerDentistServices->getPartnerDentist("059.421.410-61");
-            $partnerDentist->addSpecialization($specialization1);
-            $partnerDentist->addSpecialization($specialization4);
-            $partnerDentist->save();
+            
+            global $PartnerSpecializationServices;
+            $PartnerSpecializationServices->createPartnerSpecialization($partnerDentist, $specialization1, 0.4);
+            $PartnerSpecializationServices->createPartnerSpecialization($partnerDentist, $specialization4, 0.4);
 
             print_r($partnerDentist);
         }catch(Exception $e){
@@ -469,10 +492,6 @@
             $budget = $BudgetServices->getBudget(1);
             $procedures = $budget->getProcedures();
 
-
-            global $PartnerDentistServices;
-            $partnerDentist = $PartnerDentistServices->getPartnerDentist("059.421.410-61");
-
             global $FixedDentistServices;
             $fixedDentist = $FixedDentistServices->getFixedDentist("146.258.600-75");
 
@@ -480,7 +499,7 @@
             global $AppointmentServices;
 
             
-            $AppointmentServices->createAppointment($patient, $partnerDentist, "Terça", "14:00", "0:30");
+            $AppointmentServices->createAppointment($patient, $fixedDentist, "Terça", "14:00", "0:30");
             $appointment1 = $AppointmentServices->getAppointment(2);
             $AppointmentServices->createAppointment($patient, $fixedDentist, "Terça", "9:00", "1:30");
             $appointment2 = $AppointmentServices->getAppointment(3);
@@ -498,6 +517,7 @@
         
             foreach($procedures as $procedure)
                 $procedure->save();
+            $budget->save();
 
             print_r($procedures);
         }catch(Exception $e){
@@ -528,14 +548,73 @@
 
             $creditCard = $PIXServices->getPix(4); //Como pix e cartão de crédito são PaymentType, o persist não vê diferença entre eles na hora de procurar pelo index
 
-            $PaymentRecordsServices->createPaymentRecord($totalValue/2 + ($totalValue/2)*0.04, $creditCard, "27-11-2023"); //Aplicando-se a taxa do cartão ao valor
+            $PaymentRecordsServices->createPaymentRecord($totalValue/2, $creditCard, "27-11-2023");
             $paymentCard = $PaymentRecordsServices->getPaymentRecord(2);
             
-            $budget->recordPayment($paymentPix);
-            $budget->recordPayment($paymentCard);
+            $payment = array($paymentPix, $paymentCard);
+            $budget->recordPayment($payment);
 
             print_r($budget);
             
+        }catch(Exception $e){
+            echo($e->getMessage().PHP_EOL);
+        }
+    }
+
+    //Simula a passagem de tempo e a conclusão dos procedimentos
+    function teste13(){
+        try{
+            echo(PHP_EOL.PHP_EOL.PHP_EOL."Iniciando Teste 13...".PHP_EOL);
+
+            //Simula a passagem de tempo (realização das consultas) e a completação dos procedimentos
+            //Também define se um procedimento foi realizado com um dentista parceiro, para o cálculo das comissões
+            $procedures = Procedure::getRecords();
+            foreach($procedures as $procedure){
+                $procedure->completeProcedure();
+                
+                $appointments = $procedure->getAppointments();
+                foreach($appointments as $appointment){
+                    if(get_class($appointment->getAppointmentDentist()) == "PartnerDentist"){
+                        $procedure->setPartnered();
+                    }
+                }
+
+                $procedure->save();
+            }
+        }catch(Exception $e){
+            echo($e->getMessage().PHP_EOL);
+        }
+    }
+
+    //Calcula a receita mensal da clínica
+    function teste14(){
+        try{
+            echo(PHP_EOL.PHP_EOL.PHP_EOL."Iniciando Teste 14...".PHP_EOL);
+
+            global $login;
+            $user = $login->getLogged();
+
+            checkPermission($user, "calculateMonthlyFinances");
+
+            //Calcula os valores pagos pelos clientes
+            $paymentRecords = PaymentRecord::getRecords();
+            $montlhyRevenue = 0;
+            foreach($paymentRecords as $paymentRecord){
+                if(get_class($paymentRecord->getPaymentType()) == "CreditCard" || get_class($paymentRecord->getPaymentType()) == "DebitCard"){
+                    $paymentType = $paymentRecord->getPaymentType();
+                    $montlhyRevenue += $paymentRecord->getPaidValue() - $paymentRecord->getPaidValue()*$paymentType->getTax();  //Retira do valor rcebido a taxa dos cartões
+                }else
+                    $montlhyRevenue += $paymentRecord->getPaidValue();
+            }
+
+            //Calcula as despesas
+            //Dentistas fixos
+            $fixedDentists = FixedDentist::getRecords();
+            foreach($fixedDentists as $fixedDentist){
+                $montlhyRevenue -= $fixedDentist->getSalary();
+            }
+            
+            echo ("Receita final do mês: " .$montlhyRevenue .PHP_EOL);
         }catch(Exception $e){
             echo($e->getMessage().PHP_EOL);
         }

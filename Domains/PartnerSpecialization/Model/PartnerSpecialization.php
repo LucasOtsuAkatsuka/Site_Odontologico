@@ -4,7 +4,7 @@
     require_once(__DIR__."../../../../Database/persist.php");
 
     class PartnerSpecialization extends persist{
-        private PartnerDentist $linkedDentist;
+        protected PartnerDentist $linkedDentist;
         private Specialization $linkedSpecialization;
         protected $comission;
 
@@ -18,6 +18,7 @@
 
         public function getDentist(){return $this->linkedDentist;}
         public function getSpecialization(){return $this->linkedSpecialization;}
+        public function getComission(){return $this->comission;}
 
         static public function getFilename(){
             return get_called_class()::$local_filename;

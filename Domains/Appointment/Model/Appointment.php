@@ -30,8 +30,8 @@
             return get_called_class()::$local_filename;
         }
 
-        public function getPatient():Patient{return $this->patient;}
-        public function getAppointmentDentist():Dentist{return $this->appointmentDentist;}
+        public function getPatient(){return $this->patient;}
+        public function getAppointmentDentist(){return $this->appointmentDentist;}
         public function getAppointmentDate(){return $this->appointmentDate;}
         public function getAppointmentTime(){return $this->appointmentTime;}
         public function getExpectedDuration(){return $this->expectedDuration;}
